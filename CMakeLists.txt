@@ -3,6 +3,7 @@ project(youbot_nav)
 
 find_package(catkin REQUIRED
   COMPONENTS
+    robotics_math
     geometry_msgs
     kdl_parser
     roscpp
@@ -13,10 +14,7 @@ find_package(catkin REQUIRED
 
 catkin_package(
   LIBRARIES
-    trj_planer
-  CATKIN_DEPENDS
-    Eigen
-    spdlog
+  robotics_math
 )
 
 include_directories(
@@ -24,24 +22,17 @@ include_directories(
 )
 
 ### LIBS
-add_library(trj_planer
-  src/trj_planer/trj_planer.cpp
-)
-target_link_libraries(trj_planer
-  ${catkin_LIBRARIES}
-)
+add_subdirectory(utils/robotics_math)
 
 ### TESTS
-roslint_cpp()
+
 
 if(CATKIN_ENABLE_TESTING)
   find_package(roslaunch REQUIRED)
-
-  roslaunch_add_file_check(launch)
 endif()
 
 
 ### INSTALLS
-install(TARGETS trj_planer
+install(TARGETS robotics_math
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 )
