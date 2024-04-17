@@ -33,7 +33,7 @@ add_library(point_motion
 )
 target_link_libraries(point_motion
   ${catkin_LIBRARIES}
-   robotics_math
+  #  robotics_math
 )
 
 ### TESTS
